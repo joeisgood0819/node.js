@@ -1,0 +1,43 @@
+body {
+  background-image: url(../images/pexels-photo-189349.webp);
+  height: 100svh;
+  background-size: cover;
+}
+.row {
+  display: flex;
+  width: 180px;
+}
+.col {
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+.col:not(:first-child) {
+  border-left: 1px solid #000;
+}
+.row:nth-child(odd) {
+  background-color: #e03131;
+}
+.row:nth-child(even) {
+  background-color: #362ed8;
+}
+.active {
+  background-color: #6453d1;
+  color: #fff;
+}
+.active:nth-child(even) {
+  background-color: #56e024;
+  color: #fff;
+}
+.row:nth-child(even) .active {
+  background-color: #f13303;
+  color: #fff;
+}
+.row:nth-child(even) .active:nth-child(even) {
+  background-color: #f16e03;
+  color: #fff;
+}
