@@ -8,29 +8,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 // function log(){}
-let log = (req,res,next)=>{
-app.get("/home", (req, res) => {
+let logMiddleware = (req, res, next) => {
   let { path, ip } = req;
   let time = moment().format("YYYY-MM-DDTHH:mm:ss");
   fs.appendFile(
     resolve(__dirname, "access.log"),
-    `${time} ${ip} ${path}`,
-    () => {})
-  next(); 
-}
+    `${time} ${ip} ${path}\r\n`,
+    () => {}
+  );
+  next();
+};
+
+app.use(logMiddleware);
 
 app.get("/", (req, res) => {
   res.send("這是首頁");
 });
 
 app.get("/home", (req, res) => {
-  let { path, ip } = req;
-  let time = moment().format("YYYY-MM-DDTHH:mm:ss");
-  fs.appendFile(
-    resolve(__dirname, "access.log"),
-    `${time} ${ip} ${path}`,
-    () => {}
-  );
   res.send("這是主頁");
 });
 
